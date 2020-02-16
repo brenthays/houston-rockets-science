@@ -19,7 +19,7 @@
     </div>
     <div class="container pb-5">
       <h1>Select Season &amp; Players</h1>
-      <p class="mb-3">Select a season from the dropdown below. You may also toggle players by clicking on their names below.</p>
+      <p class="mb-4">Select a season from the dropdown below. You may also toggle players by clicking on their names below.</p>
       <div class="mb-3">
         <b-dropdown variant="primary" center>
           <template v-slot:button-content>
