@@ -28,7 +28,7 @@
           <b-dropdown-item v-for="s in seasons" :key="s.id" v-on:click="setSelectedSeason(s)">{{ s.name }}</b-dropdown-item>
         </b-dropdown>
       </div>
-      <a href="#!" class="badge badge-pill badge-primary mx-1 pointer" v-for="p in selectedPlayers" v-on:click="togglePlayerActive(p)" v-bind:style="{ backgroundColor: p.active ? p.color : '#ddd' }">
+      <a href="#!" class="badge badge-pill badge-primary mx-1 pointer" v-for="p in selectedPlayers" v-on:click="togglePlayerActive(p)" v-bind:style="{ backgroundColor: p.color, opacity: p.active ? 1 : .65 }">
         <font-awesome-icon icon="check" v-if="p.active"></font-awesome-icon>
         {{ p.name }}
       </a>
@@ -40,6 +40,9 @@
       </div>
       <div class="py-5">
         <FGPercentagePerQuarter :players="this.selectedPlayers"/>
+      </div>
+      <div class="py-5">
+        <FTPercentagePerQuarter :players="this.selectedPlayers"/>
       </div>
       <div class="py-5">
         <ScoringPerQuarter :players="this.selectedPlayers"/>
@@ -58,6 +61,7 @@
 import seasons from './json/seasons.json'
 import MinutesPerQuarter from './components/MinutesPerQuarter'
 import FGPercentagePerQuarter from './components/FGPercentagePerQuarter'
+import FTPercentagePerQuarter from './components/FTPercentagePerQuarter'
 import ScoringPerQuarter from './components/ScoringPerQuarter'
 import AssistsPerQuarter from './components/AssistsPerQuarter'
 import ReboundsPerQuarter from './components/ReboundsPerQuarter'
@@ -69,7 +73,8 @@ export default {
     FGPercentagePerQuarter,
     ScoringPerQuarter,
     AssistsPerQuarter,
-    ReboundsPerQuarter
+    ReboundsPerQuarter,
+    FTPercentagePerQuarter
   },
   data () {
     return {
