@@ -5,11 +5,10 @@ import App from './App.vue'
 import { BootstrapVue } from 'bootstrap-vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRocket, faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faRocket)
-library.add(faCalendar)
+library.add(faCheck)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(HighchartsVue)

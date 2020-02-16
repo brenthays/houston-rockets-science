@@ -10,12 +10,16 @@
     <!-- Season Select -->
     <div class="container py-5">
       <h1>About The App</h1>
-      <p class="mb-5">This web application was built to visualize data produced by
+      <p>This web application was built to visualize data produced by
         <a href="https://github.com/brenthays/NBA-Stats-API-Laravel" class="text-secondary" target="_blank" title="NBA-Stats-API-Laravel">NBA-Stats-API-Laravel</a>.
         The Laravel project handles seeding play-by-play data provided by
         <a href="https://www.bigdataball.com/" target="_blank" class="text-secondary" title="BigDataBall">BigDataBall</a>
         into a MySQL database and creates an API to interact with the data. This application focuses on historical data for only Houston Rockets players, and the data
-        is cached locally. Use the dropdown below to change the season to view stats for.</p>
+        is cached locally.</p>
+    </div>
+    <div class="container pb-5">
+      <h1>Select Season &amp; Players</h1>
+      <p class="mb-3">Select a season from the dropdown below. You may also toggle players by clicking on their names below.</p>
       <div class="mb-3">
         <b-dropdown variant="primary" center>
           <template v-slot:button-content>
@@ -24,7 +28,10 @@
           <b-dropdown-item v-for="s in seasons" :key="s.id" v-on:click="setSelectedSeason(s)">{{ s.name }}</b-dropdown-item>
         </b-dropdown>
       </div>
-      <span class="badge badge-pill badge-primary mx-1" v-for="p in selectedPlayers" v-bind:style="{ backgroundColor: p.color }">{{ p.name }}</span>
+      <a href="#!" class="badge badge-pill badge-primary mx-1 pointer" v-for="p in selectedPlayers" v-on:click="togglePlayerActive(p)" v-bind:style="{ backgroundColor: p.active ? p.color : '#ddd' }">
+        <font-awesome-icon icon="check" v-if="p.active"></font-awesome-icon>
+        {{ p.name }}
+      </a>
     </div>
     <!-- Render Chart Components -->
     <div class="container" v-if="this.selectedPlayers.length" :key="playerKey">
@@ -74,6 +81,10 @@ export default {
     }
   },
   methods: {
+    togglePlayerActive (player) {
+      player.active = !player.active
+      this.playerKey++
+    },
     setSelectedSeason (season) {
       this.selectedSeason = season
       this.setDefaultPlayers()
@@ -85,7 +96,7 @@ export default {
         2: [9,10,12,8,7,17,199,220,206]
       }
       const selectedSeason = this.selectedSeason.id
-      const colors = ['#ffc72c', '#3498db', '#ba0c2f', '#218c74', '#9E9B94', '#8e44ad', '#e67e22', '#fd79a8', '#2ed573']
+      const colors = ['#ffc72c', '#3498db', '#ba0c2f', '#218c74', '#8e44ad', '#e67e22', '#fd79a8', '#2ed573', '#95afc0']
       let numPlayersFound = 0
       let selectedPlayers = []
 
@@ -94,6 +105,7 @@ export default {
           this.seasons[i].players.forEach(function(player) {
             if(defaultPlayerIds[selectedSeason].indexOf(player.id) >= 0) {
               player.color = colors[numPlayersFound++]
+              player.active = true
               selectedPlayers.push(player)
             }
           })
@@ -139,6 +151,10 @@ export default {
     }
     h1 {
       font-size: 3rem;
+    }
+
+    .pointer {
+      cursor: pointer;
     }
   }
 </style>

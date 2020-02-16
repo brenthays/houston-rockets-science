@@ -13,16 +13,18 @@
     data () {
       let series = []
       this.players.forEach(function(player) {
-        series.push({
-          name: player.name,
-          data: [
-            parseFloat((player.total_play_time_seconds_q1 / player.total_games / 60).toFixed(2)),
-            parseFloat((player.total_play_time_seconds_q2 / player.total_games / 60).toFixed(2)),
-            parseFloat((player.total_play_time_seconds_q3 / player.total_games / 60).toFixed(2)),
-            parseFloat((player.total_play_time_seconds_q4 / player.total_games / 60).toFixed(2)),
-          ],
-          color: player.color
-        })
+        if (player.active) {
+          series.push({
+            name: player.name,
+            data: [
+              parseFloat((player.total_play_time_seconds_q1 / player.total_games / 60).toFixed(2)),
+              parseFloat((player.total_play_time_seconds_q2 / player.total_games / 60).toFixed(2)),
+              parseFloat((player.total_play_time_seconds_q3 / player.total_games / 60).toFixed(2)),
+              parseFloat((player.total_play_time_seconds_q4 / player.total_games / 60).toFixed(2)),
+            ],
+            color: player.color
+          })
+        }
       })
 
       return {

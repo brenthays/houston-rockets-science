@@ -13,16 +13,18 @@
     data () {
       let series = []
       this.players.forEach(function(player) {
-        series.push({
-          name: player.name,
-          data: [
-            parseFloat(((parseInt(player.total_player_assists_q1) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q1)/60/parseInt(player.total_games))).toFixed(2)),
-            parseFloat(((parseInt(player.total_player_assists_q2) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q2)/60/parseInt(player.total_games))).toFixed(2)),
-            parseFloat(((parseInt(player.total_player_assists_q3) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q3)/60/parseInt(player.total_games))).toFixed(2)),
-            parseFloat(((parseInt(player.total_player_assists_q4) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q4)/60/parseInt(player.total_games))).toFixed(2)),
-          ],
-          color: player.color
-        })
+        if (player.active) {
+          series.push({
+            name: player.name,
+            data: [
+              parseFloat(((parseInt(player.total_player_assists_q1) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q1)/60/parseInt(player.total_games))).toFixed(2)),
+              parseFloat(((parseInt(player.total_player_assists_q2) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q2)/60/parseInt(player.total_games))).toFixed(2)),
+              parseFloat(((parseInt(player.total_player_assists_q3) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q3)/60/parseInt(player.total_games))).toFixed(2)),
+              parseFloat(((parseInt(player.total_player_assists_q4) / parseInt(player.total_games) * 36) / (parseInt(player.total_play_time_seconds_q4)/60/parseInt(player.total_games))).toFixed(2)),
+            ],
+            color: player.color
+          })
+        }
       })
 
       return {
