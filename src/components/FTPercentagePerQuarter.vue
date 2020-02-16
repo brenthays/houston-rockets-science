@@ -59,6 +59,7 @@
             }
           },
           yAxis: {
+            max: 100,
             title: {
               text: 'FT%',
               style: { color: '#fff' },
