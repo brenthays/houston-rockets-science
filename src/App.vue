@@ -53,6 +53,9 @@
       <div class="py-5">
         <ReboundsPerQuarter :players="this.selectedPlayers"/>
       </div>
+      <div class="py-5">
+        <PlusMinusPerQuarter :players="this.selectedPlayers"/>
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +68,7 @@ import FTPercentagePerQuarter from './components/FTPercentagePerQuarter'
 import ScoringPerQuarter from './components/ScoringPerQuarter'
 import AssistsPerQuarter from './components/AssistsPerQuarter'
 import ReboundsPerQuarter from './components/ReboundsPerQuarter'
+import PlusMinusPerQuarter from './components/PlusMinusPerQuarter'
 
 export default {
   name: 'app',
@@ -74,7 +78,8 @@ export default {
     ScoringPerQuarter,
     AssistsPerQuarter,
     ReboundsPerQuarter,
-    FTPercentagePerQuarter
+    FTPercentagePerQuarter,
+    PlusMinusPerQuarter
   },
   data () {
     return {
