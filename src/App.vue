@@ -35,26 +35,46 @@
     </div>
     <!-- Render Chart Components -->
     <div class="container" v-if="this.selectedPlayers.length" :key="playerKey">
-      <div class="py-5">
-        <MinutesPerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <FGPercentagePerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <FTPercentagePerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <ScoringPerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <AssistsPerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <ReboundsPerQuarter :players="this.selectedPlayers"/>
-      </div>
-      <div class="py-5">
-        <PlusMinusPerQuarter :players="this.selectedPlayers"/>
+      <div>
+        <div class="py-5">
+          <MinutesPerGame :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <MinutesPerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <FGPercentage :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <FGPercentagePerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <FTPercentage :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <FTPercentagePerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <PointsPerGame :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <ScoringPerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <AssistsPerGame :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <AssistsPerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <ReboundsPerGame :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <ReboundsPerQuarter :players="this.selectedPlayers"/>
+        </div>
+        <div class="py-5">
+          <PlusMinusPerQuarter :players="this.selectedPlayers"/>
+        </div>
       </div>
     </div>
   </div>
@@ -62,24 +82,36 @@
 
 <script>
 import seasons from './json/seasons.json'
+import MinutesPerGame from './components/MinutesPerGame'
 import MinutesPerQuarter from './components/MinutesPerQuarter'
+import FGPercentage from './components/FGPercentage'
 import FGPercentagePerQuarter from './components/FGPercentagePerQuarter'
+import FTPercentage from './components/FTPercentage'
 import FTPercentagePerQuarter from './components/FTPercentagePerQuarter'
+import PointsPerGame from './components/PointsPerGame'
 import ScoringPerQuarter from './components/ScoringPerQuarter'
+import AssistsPerGame from './components/AssistsPerGame'
 import AssistsPerQuarter from './components/AssistsPerQuarter'
+import ReboundsPerGame from './components/ReboundsPerGame'
 import ReboundsPerQuarter from './components/ReboundsPerQuarter'
 import PlusMinusPerQuarter from './components/PlusMinusPerQuarter'
 
 export default {
   name: 'app',
   components: {
+    MinutesPerGame,
     MinutesPerQuarter,
+    FGPercentage,
     FGPercentagePerQuarter,
-    ScoringPerQuarter,
-    AssistsPerQuarter,
-    ReboundsPerQuarter,
+    FTPercentage,
     FTPercentagePerQuarter,
-    PlusMinusPerQuarter
+    PointsPerGame,
+    ScoringPerQuarter,
+    AssistsPerGame,
+    AssistsPerQuarter,
+    ReboundsPerGame,
+    ReboundsPerQuarter,
+    PlusMinusPerQuarter,
   },
   data () {
     return {
